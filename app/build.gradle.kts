@@ -45,13 +45,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.kotlin.faker)
 }
-
-//dependencies {
-//    implementation("io.github.serpro69:kotlin-faker:$1.16.0")
-//}
-
-//dependencies {
-//    implementation("com.google.guava:guava:23.0")
-//}
