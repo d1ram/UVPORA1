@@ -1,71 +1,20 @@
 package com.example.lib
 
-import io.github.serpro69.kfaker.Faker;
-
-fun generateID(i : Double) : Double{
-    return i + 10.0;
-}
-
-fun showExceptions(message : String){
-    val except = ExceptionsPrimer();
-
-    try { // 1 IllegalArgumentException. require does not meets it conditions)
-        except.ExceptionOne(-1);
-    } catch (e : IllegalArgumentException){
-        println("Catched Exception IllegalArgumentException:\n" + e.toString());
-    }
-
-    try { // 2 IllegalStateException. check meets false, throws exception)
-        except.ExceptionTwo(false);
-    } catch (e : IllegalStateException){
-        println("Catched Exception IllegalStateException:\n" + e.toString());
-    }
-
-    try { // 3 ArithmeticException. divide by zero)
-        except.ExceptionThree(200);
-    } catch (e : ArithmeticException){
-        println("Catched Exception ArithmeticException:\n" + e.toString());
-    }
-
-    try {
-        except.ExceptionFour(message);
-    } catch (e : MyException){
-        println("Catched Exception MyException:\n" + e.toString());
-    }
-}
-
-class Square(var lenght : Int) : Sizable {
-    override fun size(): Int {
-        return lenght * lenght;
-    }
-}
-
 fun main(){
-    val faker = Faker();
+    var d = RandomArticleCreator(listOf<ArticleFactory>(
+        StandartArticleFactory(),
+        WeightedArticleFactory()
+    ));
 
-    var bank = Bank();
+    var ListOfArticles : MutableList<Article> = mutableListOf();
 
-    for (i in 1..5){
-        bank.AddAccount(Account( Person(faker.southPark.characters(), faker.southPark.characters()), generateID(i.toDouble())));
-    }
+    repeat(100, {ListOfArticles.add(d.CreateRandomArticle())});
 
-    println(bank.toString());
+    var manager : ArticleListManager = ArticleListManager(ListOfArticles);
 
-    println("\nCompareTo() function:\nfindIdStupidWay(17). RESULT:")
-    println(when (bank.findIdStupidWay(17.0)){
-        true -> "Found account with that ID."
-        false -> "No account found with that ID."
-    });
+//    println(manager.toString());
+}
 
-    println("\nCompareTo() function:\nfindIdStupidWay(12). RESULT:")
-    println(when (bank.findIdStupidWay(12.0)){
-        true -> "Found account with that ID."
-        false -> "No account found with that ID."
-    });
+fun testMethods(manager : ArticleListManager){
 
-    var square = Square(20);
-
-    println("\nCreate square with size of 20. Call method .size() and returning its result: ${square.size()}\n");
-
-    showExceptions(faker.southPark.quotes());
 }
