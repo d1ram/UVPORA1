@@ -34,6 +34,12 @@ fun showExceptions(message : String){
     }
 }
 
+class Square(var lenght : Int) : Sizable {
+    override fun size(): Int {
+        return lenght * lenght;
+    }
+}
+
 fun main(){
     val faker = Faker();
 
@@ -45,17 +51,21 @@ fun main(){
 
     println(bank.toString());
 
-    println("CompareTo() function:\nfindIdStupidWay(17). RESULT:")
+    println("\nCompareTo() function:\nfindIdStupidWay(17). RESULT:")
     println(when (bank.findIdStupidWay(17.0)){
         true -> "Found account with that ID."
         false -> "No account found with that ID."
     });
 
-    println("CompareTo() function:\nfindIdStupidWay(12). RESULT:")
+    println("\nCompareTo() function:\nfindIdStupidWay(12). RESULT:")
     println(when (bank.findIdStupidWay(12.0)){
         true -> "Found account with that ID."
         false -> "No account found with that ID."
     });
+
+    var square = Square(20);
+
+    println("\nCreate square with size of 20. Call method .size() and returning its result: ${square.size()}\n");
 
     showExceptions(faker.southPark.quotes());
 }
