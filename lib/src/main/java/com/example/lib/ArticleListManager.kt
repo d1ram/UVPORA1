@@ -1,7 +1,7 @@
 package com.example.lib
 
 class ArticleListManager(val ListOfArticles : MutableList<Article>) {
-    fun findContains(string: String) : List<Article>{                   // find articles that contains string
+    fun findContains(string: String) : MutableList<Article>{                   // find articles that contains string
         var _tempList : MutableList<Article> = mutableListOf();
 
         for (article in ListOfArticles){
@@ -21,7 +21,7 @@ class ArticleListManager(val ListOfArticles : MutableList<Article>) {
         }
         return _tempList;
     }
-    fun medianLenghtOfArticles(string: String) : Double{                // find median lenght of articles
+    fun medianLenghtOfArticles() : Double{                // find median lenght of articles
         var _tempMedianNum : Double = 0.0;
 
         for (article in ListOfArticles){
