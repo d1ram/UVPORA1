@@ -1,5 +1,5 @@
 package com.example.lib
 
 interface Sizable {
-    fun size() : Int = 0;
+    abstract fun size() : Int;
 }
