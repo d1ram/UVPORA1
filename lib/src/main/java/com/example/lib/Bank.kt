@@ -1,28 +1,30 @@
 package com.example.lib
 
-class Bank(accounts : ArrayList<Account> = ArrayList<Account>()) {
+class Bank(accounts : ArrayList<Account> = ArrayList<Account>()) : Sizable {
     var accounts : ArrayList<Account> = accounts
         private set;
+    val capacity : Int = 10;
     override fun toString(): String {
         var finalString : String = "";
         for (account in accounts){
             finalString += account.toString() + "\n";
         }
 
-        finalString += "\nNUMBER OF ACCOUNTS IN BANK: " + accounts.size.toString();
+        finalString += "\nNUMBER OF ACCOUNTS IN BANK: " + size();
         return finalString;
     }
 
     fun AddAccount(account: Account){
+        if (capacity == accounts.size)
+            throw BankIsFullException("Could not add an account, bank is full!");
+
         accounts.add(account);
     }
+    fun sort(){
+        accounts.sort();
+    }
 
-    fun findIdStupidWay(ID : Double) : Boolean{
-        for (account in accounts){
-            if (account.compareTo(ID) == 0){
-                return true;
-            }
-        }
-        return false;
+    override fun size(): Int {
+        return accounts.size;
     }
 }

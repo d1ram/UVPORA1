@@ -1,6 +1,6 @@
 package com.example.lib
 
-class MyException(message : String = "My custom Exception class") : Exception(message) {
+class BankIsFullException(message : String = "Bank IS FULL!") : Exception(message) {
 
 }
 class ExceptionsPrimer {
@@ -20,7 +20,7 @@ class ExceptionsPrimer {
         stevilo / 0; // Throws IllegalStateException if gets FALSE as parameter
     }
 
-    fun ExceptionFour(message : String = "My custom exception class"){
-        throw MyException(message);
+    fun ExceptionFour(message : String = "Bank is FULL!"){
+        throw BankIsFullException(message);
     }
 }

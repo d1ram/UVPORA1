@@ -1,9 +1,10 @@
 package com.example.lib
 
 import io.github.serpro69.kfaker.Faker;
+import kotlin.random.Random
 
 fun generateID(i : Double) : Double{
-    return i + 10.0;
+    return Random.nextDouble(0.0,100.0);
 }
 
 fun showExceptions(message : String){
@@ -29,14 +30,8 @@ fun showExceptions(message : String){
 
     try {
         except.ExceptionFour(message);
-    } catch (e : MyException){
+    } catch (e : BankIsFullException){
         println("Catched Exception MyException:\n" + e.toString());
-    }
-}
-
-class Square(var lenght : Int) : Sizable {
-    override fun size(): Int {
-        return lenght * lenght;
     }
 }
 
@@ -51,21 +46,9 @@ fun main(){
 
     println(bank.toString());
 
-    println("\nCompareTo() function:\nfindIdStupidWay(17). RESULT:")
-    println(when (bank.findIdStupidWay(17.0)){
-        true -> "Found account with that ID."
-        false -> "No account found with that ID."
-    });
-
-    println("\nCompareTo() function:\nfindIdStupidWay(12). RESULT:")
-    println(when (bank.findIdStupidWay(12.0)){
-        true -> "Found account with that ID."
-        false -> "No account found with that ID."
-    });
-
-    var square = Square(20);
-
-    println("\nCreate square with size of 20. Call method .size() and returning its result: ${square.size()}\n");
+    println("\nSORT BY ID:")
+    bank.sort();
+    println(bank.toString());
 
     showExceptions(faker.southPark.quotes());
 }
