@@ -14,7 +14,7 @@ class SavingAccount(
     }
 
     override fun toString(): String {
-        return ("${super.toString()}\nBalance: ${money}")
+        return ("${super.toString()}\nBalance: ${checkBalance()}")
     }
 }
 
