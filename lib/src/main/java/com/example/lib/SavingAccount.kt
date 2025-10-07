@@ -24,7 +24,7 @@ class SavingAccountFactory() : AccountFactory{
 
         return SavingAccount(Person(faker.dota.hero(),
             faker.animal.name()),
-            Random.nextDouble(),
+            Random.nextDouble(1.0, 1000.0),
             Random.nextDouble());
     }
 }

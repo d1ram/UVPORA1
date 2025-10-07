@@ -52,6 +52,38 @@ fun firstTask(){
     showExceptions(faker.southPark.quotes());
 }
 
-fun main(){
+fun secondTask(){
+    fun printList(mutableList: MutableList<Account>){
+        for (account in mutableList){
+            println(account.toString());
+        }
+    }
 
+    fun testMethods(bank: Bank){
+        println("\n-------------------FIND_CONTAINS_'ARC'-------------------")
+        printList(bank.findContains("Arc"));
+        println("\n-------------------FIND_NOT_CONTAINS_'ARC'-------------------");
+        printList(bank.findNotContains("Arc"));
+        println("\n-------------------FIND_NAME_MORE_THAN_10-------------------")
+        printList(bank.findNameMoreThan10());
+        println("\n-------------------COUNT_CONTAINS_'ARC'-------------------")
+        println(bank.countContains("Arc"));
+        println("\n-------------------MEDIAN_LENGHT-------------------")
+        println(bank.medianLenghtOfAccounts());
+    }
+
+    var ListOfFactories = listOf<AccountFactory>(
+        StandartAccountFactory(),
+        SavingAccountFactory()
+    );
+
+    var bank = Bank();
+
+    repeat(100, {bank.AddAccount(RandomAccountCreator.CreateRandomAccount(ListOfFactories))});
+
+    testMethods(bank);
+}
+
+fun main(){
+    secondTask();
 }
