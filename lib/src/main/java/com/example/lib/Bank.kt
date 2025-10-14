@@ -1,9 +1,13 @@
 package com.example.lib
 
-class Bank(accounts : ArrayList<Account> = ArrayList<Account>()) : Sizable {
+class Bank(var capacity : Int, accounts : ArrayList<Account> = ArrayList<Account>()) : Sizable {
     var accounts : ArrayList<Account> = accounts
         private set;
-    val capacity : Int = 101;
+    init {
+        if (capacity <= 0){
+            throw BankIsFullException("Capacity <= 0");
+        }
+    }
     override fun toString(): String {
         var finalString : String = "";
         for (account in accounts){

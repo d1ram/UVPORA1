@@ -1,6 +1,7 @@
 package com.example.lib
 
 import io.github.serpro69.kfaker.Faker;
+import java.io.Console
 import kotlin.random.Random
 
 fun firstTask(){
@@ -8,7 +9,7 @@ fun firstTask(){
         return Random.nextDouble(0.0,100.0);
     }
 
-    fun showExceptions(message : String){
+    fun showExceptions(bank : Bank){
         val except = ExceptionsPrimer();
 
         try { // 1 IllegalArgumentException. require does not meets it conditions)
@@ -30,14 +31,14 @@ fun firstTask(){
         }
 
         try {
-            except.ExceptionFour(message);
+            bank.AddAccount(Account(Person("Test", "Person"), 100.0));
         } catch (e : BankIsFullException){
-            println("Catched Exception MyException:\n" + e.toString());
+            println("Catched Exception BankIsFullException:\n" + e.toString());
         }
     }
     val faker = Faker();
 
-    var bank = Bank();
+    var bank = Bank(5);
 
     for (i in 1..5){
         bank.AddAccount(Account( Person(faker.southPark.characters(), faker.southPark.characters()), generateID(i.toDouble())));
@@ -49,7 +50,7 @@ fun firstTask(){
     bank.sort();
     println(bank.toString());
 
-    showExceptions(faker.southPark.quotes());
+    showExceptions(bank);
 }
 
 fun secondTask(){
@@ -77,7 +78,7 @@ fun secondTask(){
         SavingAccountFactory()
     );
 
-    var bank = Bank();
+    var bank = Bank(100);
 
     repeat(100, {bank.AddAccount(RandomAccountCreator.CreateRandomAccount(ListOfFactories))});
 
@@ -85,5 +86,8 @@ fun secondTask(){
 }
 
 fun main(){
+    firstTask();
+
+    println("\n-------------------SECOND_TASK-------------------\n")
     secondTask();
 }
